@@ -1,0 +1,30 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.header {
+  @include centerize();
+  padding: 2%;
+  @include flex-type();
+  position: fixed;
+  top: 0;
+  background-color: #fff;
+  z-index: 10;
+  max-width: 1920px;
+  &__nav {
+    width: 40%;
+    @include flex-type();
+    &-item {
+      @include text-type(20px, 700);
+      &:hover {
+        color: $gold-buttons;
+      }
+    }
+  }
+  &__cart {
+    @include flex-type();
+    @include text-type(18px, 600);
+    span {
+      color: #ff0000;
+    }
+  }
+}

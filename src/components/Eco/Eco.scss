@@ -1,0 +1,56 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.eco {
+  @include centerize();
+  &__header {
+    @include flex-type();
+  }
+  &__title {
+    @include title-text();
+  }
+  &__heading {
+    @include text-type();
+  }
+  &__image {
+    width: 50%;
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+  &__info {
+    background-color: #fff;
+    position: relative;
+    right: 10%;
+    border-radius: 25px;
+    padding: 10%;
+  }
+  &__card {
+    margin-top: 5%;
+    &-text {
+      @include regular-text();
+    }
+  }
+  &__wrapper {
+    @include flex-type($justify: space-between);
+    background-color: $eco-background;
+    padding: 10% 0;
+    &-card {
+      width: 30%;
+      position: relative;
+      img {
+        width: 100%;
+      }
+    }
+    &-heading {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 5% 10%;
+      border-radius: 15px;
+    }
+  }
+}

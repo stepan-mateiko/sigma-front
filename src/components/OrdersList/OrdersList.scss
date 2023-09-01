@@ -1,0 +1,31 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.orders {
+  @include text-type($size: 18px, $weight: 500);
+  background-color: $grey-background;
+  margin-top: 10%;
+  &__heading {
+    @include text-type;
+    padding: 2%;
+    text-align: center;
+  }
+  &__card {
+    width: 90%;
+    margin: 5% auto;
+    @include flex-type($align: flex-start);
+    & > div {
+      width: 20%;
+    }
+    @media (max-width: 1000px) {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      & > div {
+        width: 80%;
+        text-align: center;
+      }
+    }
+  }
+}

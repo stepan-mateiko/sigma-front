@@ -1,0 +1,17 @@
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+}
+html {
+  font-size: 16px;
+}
+body {
+  @include text-type(16px, 800);
+  color: $headings-color;
+  @include centerize(100vw);
+  max-width: 1920px;
+}
+hr {
+  color: $hr-line;
+}

@@ -1,0 +1,98 @@
+@mixin text-type(
+  $size: 50px,
+  $weight: 800,
+  $family: $roboto,
+  $color: $headings-color
+) {
+  font-family: $family;
+  font-weight: $weight;
+  font-size: $size;
+  color: $color;
+  text-decoration: none;
+}
+
+@mixin flex-type(
+  $justify: space-around,
+  $align: center,
+  $gap: 10px,
+  $wrap: nowrap,
+  $direction: row
+) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: $justify;
+  -ms-flex-pack: $justify;
+  justify-content: $justify;
+  -webkit-box-align: $align;
+  -ms-flex-align: $align;
+  align-items: $align;
+  gap: $gap;
+  -ms-flex-wrap: $wrap;
+  flex-wrap: $wrap;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: $direction;
+  flex-direction: $direction;
+}
+
+@mixin centerize($width: 100%) {
+  width: $width;
+  margin: 0 auto;
+}
+
+@mixin golden-button() {
+  cursor: pointer;
+  border: none;
+  background-color: $gold-buttons;
+  padding: 2% 4%;
+  border-radius: 25px;
+  @include text-type(20px, 700);
+  @include flex-type();
+  &:hover {
+    background-color: $eco-background;
+    color: $gold-buttons;
+    border: 1px solid $gold-buttons;
+  }
+}
+
+@mixin blue-button() {
+  cursor: pointer;
+  border: none;
+  background-color: $headings-color;
+  padding: 2% 4%;
+  border-radius: 25px;
+  @include text-type(20px, 700);
+  @include flex-type();
+  color: #fff;
+  &:hover {
+    color: $headings-color;
+    background-color: $eco-background;
+    border: 1px solid $headings-color;
+  }
+}
+
+@mixin regular-text() {
+  @include text-type(
+    $size: 18px,
+    $weight: 400,
+    $family: $open-sans,
+    $color: $text-color
+  );
+}
+
+@mixin title-text() {
+  @include text-type(
+    $size: 36px,
+    $weight: 400,
+    $family: $yellowtail,
+    $color: $titles-color
+  );
+}
+
+@mixin mousehover() {
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+  -webkit-transition-duration: 2s;
+  transition-duration: 2s;
+}
