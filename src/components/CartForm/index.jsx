@@ -39,13 +39,16 @@ const CartForm = ({ cart, setCart, totalPrice, totalDiscount, setIsForm }) => {
 
   async function handleAddToOrder(order) {
     try {
-      const response = await fetch("http://localhost:3001/api/orders", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ order }),
-      });
+      const response = await fetch(
+        "https://sigma-online-store.onrender.com/api/orders",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ order }),
+        }
+      );
       const data = await response.json();
       console.log("Added to order:", data);
       return data;

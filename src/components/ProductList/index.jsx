@@ -31,7 +31,9 @@ const ProductList = () => {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const response = await axios.get("http://localhost:3001/api/products");
+        const response = await axios.get(
+          "https://sigma-online-store.onrender.com/api/products"
+        );
         let list = response.data.sort((a, b) => {
           if (a.discount === b.discount) {
             return 0;
