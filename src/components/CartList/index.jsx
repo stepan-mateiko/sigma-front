@@ -29,7 +29,7 @@ const CartList = ({ cart, setCart, totalPrice, totalDiscount }) => {
             {cart.map((product, index) => (
               <li className="cart__card" key={index}>
                 <img
-                  src={`http://localhost:3001${product.image}`}
+                  src={`https://sigma-online-store.onrender.com${product.image}`}
                   alt={`${product.name} image`}
                 />
                 <p>{product.name}</p>

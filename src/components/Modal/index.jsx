@@ -47,7 +47,7 @@ const Modal = ({ isModalOpen, handleModalClose, product }) => {
         <div className="modal__image">
           <p className="modal__category">{product.category}</p>
           <img
-            src={`http://localhost:3001${product.image}`}
+            src={`https://sigma-online-store.onrender.com${product.image}`}
             alt={`${product.name} image`}
           />
         </div>
