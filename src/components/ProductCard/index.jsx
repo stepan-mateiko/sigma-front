@@ -17,7 +17,11 @@ const ProductCard = (props) => {
     <div className={`${className}__card`} onClick={handler}>
       <p className={`${className}__category`}>{category}</p>
       <img
-        src={className === "products" ? `http://localhost:3001${image}` : image}
+        src={
+          className === "products"
+            ? `https://sigma-online-store.onrender.com${image}`
+            : image
+        }
         alt={`${name} image`}
         className={`${className}__image`}
       />
