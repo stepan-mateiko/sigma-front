@@ -1,0 +1,20 @@
+@import "./normalize";
+@import "./variables";
+@import "./mixins";
+@import "./fonts";
+@import "./body";
+
+@import "../components/Header/Header.scss";
+@import "../components/StartScreen/StartScreen.scss";
+@import "../components/AboutUs/AboutUs.scss";
+@import "../components/ProductList/ProductList.scss";
+@import "../components/Testimonials/Testimonials.scss";
+@import "../components/Offer/Offer.scss";
+@import "../components/Eco/Eco.scss";
+@import "../components/News/News.scss";
+@import "../components/Footer/Footer.scss";
+@import "../components/Modal/Modal.scss";
+@import "../components/Pages/CartPage/CartPage.scss";
+@import "../components/CartList/CartList.scss";
+@import "../components/CartForm/CartForm.scss";
+@import "../components/OrdersList/OrdersList.scss";

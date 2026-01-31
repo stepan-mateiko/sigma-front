@@ -1,0 +1,66 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.cart {
+  &__empty {
+    @include centerize(50%);
+    text-align: center;
+    margin: 15% auto;
+    font-size: 48px;
+    font-weight: 600;
+  }
+  &__container {
+    padding: 5%;
+  }
+  &__card {
+    @include flex-type();
+    img {
+      width: 20%;
+      @media (max-width: 480px) {
+        width: 80%;
+      }
+    }
+    @include text-type(40px, 600);
+    @media (max-width: 768px) {
+      @include text-type(16px, 600);
+    }
+    @media (max-width: 480px) {
+      width: 80%;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+    }
+    form {
+      @include flex-type(center);
+    }
+    input {
+      width: 15%;
+      margin: 0 5%;
+      padding: 3%;
+      border-radius: 15px;
+      text-align: center;
+    }
+    button {
+      @include blue-button();
+      display: -webkit-inline-box;
+      display: -ms-inline-flexbox;
+      display: inline-flex;
+      padding: 5%;
+    }
+  }
+  &__discount-price {
+    @include text-type(24px, 700, $color: $discount-price-color);
+    text-decoration: line-through;
+    @media (max-width: 768px) {
+      font-size: 16px;
+    }
+  }
+  &__total {
+    text-align: right;
+    @include text-type(40px, 700);
+    @media (max-width: 768px) {
+      @include text-type(16px, 600);
+    }
+  }
+}

@@ -1,0 +1,75 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.start {
+  @include centerize();
+  &__header {
+    background-image: url(../../assets/images/start-background.png);
+    background-size: cover;
+    padding: 10%;
+    @media (max-width: 760px) {
+      padding: 15%;
+    }
+  }
+  &__title {
+    @include title-text();
+  }
+  &__heading {
+    width: 35%;
+    @include text-type(70px);
+    @media (max-width: 1000px) {
+      width: 100%;
+    }
+  }
+  &__btn {
+    @include golden-button();
+  }
+  &__wrapper {
+    @include flex-type();
+    margin: 5% auto;
+    @media (max-width: 768px) {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+    }
+  }
+  &__card {
+    width: 30%;
+    background-size: cover;
+    padding: 5%;
+    border-radius: 20px;
+    @media (max-width: 1000px) {
+      width: 40%;
+    }
+    @media (max-width: 768px) {
+      width: 80%;
+    }
+    &-title {
+      @include title-text();
+      color: #fff;
+    }
+    &-heading {
+      width: 70%;
+      @include text-type($size: 40px);
+      @media (max-width: 1000px) {
+        width: 100%;
+      }
+    }
+    &:hover {
+      @include mousehover();
+    }
+  }
+  &__card-1 {
+    background-image: url(../../assets/images/start-card-1.png);
+    h3 {
+      color: #fff;
+    }
+  }
+  &__card-2 {
+    background-image: url(../../assets/images/start-card-2.png);
+    p {
+      color: $titles-color;
+    }
+  }
+}

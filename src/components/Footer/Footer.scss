@@ -1,0 +1,135 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.footer {
+  @include centerize();
+  text-align: center;
+  margin: 5% auto;
+  &__wrapper {
+    @include flex-type($justify: center, $align: stretch);
+    padding: 5%;
+    @media (max-width: 1000px) {
+      padding: 1%;
+    }
+    @media (max-width: 760px) {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+    }
+  }
+  &__card {
+    width: 25%;
+    @media (max-width: 1000px) {
+      width: 30%;
+    }
+    @media (max-width: 760px) {
+      width: 100%;
+    }
+    ul {
+      @media (max-width: 760px) {
+        padding: 0;
+      }
+    }
+  }
+  &__contacts {
+    text-align: right;
+    margin-right: 5%;
+    @media (max-width: 760px) {
+      text-align: center;
+    }
+    &-title {
+      @include text-type($size: 30, $weight: 700);
+    }
+    &-list {
+      @include regular-text();
+      list-style-type: none;
+      margin-top: 5%;
+      &-item {
+        margin-top: 5%;
+      }
+    }
+  }
+  &__links {
+    position: relative;
+    padding: 0 5%;
+    width: 40%;
+    @media (max-width: 760px) {
+      -webkit-box-ordinal-group: 0;
+      -ms-flex-order: -1;
+      order: -1;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: -1px;
+      height: 100%;
+      width: 2px;
+      background-color: $hr-line;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: -1px;
+      height: 100%;
+      width: 2px;
+      background-color: $hr-line;
+    }
+    &-text {
+      @include regular-text();
+      margin-top: 5%;
+    }
+    &-wrapper {
+      margin-top: 5%;
+    }
+    a {
+      svg:hover {
+        path {
+          fill: #ff0000;
+        }
+        circle {
+          fill: #ffff00;
+        }
+      }
+    }
+  }
+  &__utility {
+    text-align: left;
+    margin-left: 5%;
+    @media (max-width: 760px) {
+      text-align: center;
+      margin: 0;
+    }
+    &-title {
+      @include text-type($size: 30, $weight: 700);
+    }
+    &-list {
+      @include regular-text();
+      list-style-type: none;
+      margin-top: 5%;
+      padding: 0%;
+      &-item {
+        margin-top: 5%;
+        a {
+          text-decoration: none;
+          color: $headings-color;
+          &:hover {
+            color: $gold-buttons;
+          }
+        }
+      }
+    }
+  }
+  &__copyright {
+    @include regular-text();
+    margin-top: 1%;
+  }
+}
