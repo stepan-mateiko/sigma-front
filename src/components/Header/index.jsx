@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 
 import { Logo, CartIcon } from "../Icon";
 import { useEffect, useState } from "react";
+import { HEADER_LINKS } from "../../helpers/constants";
 
 const Header = () => {
   const [cartLength, setCartLength] = useState(0);
@@ -28,17 +29,17 @@ const Header = () => {
       <Logo className="header__logo" />
       <nav className="header__nav">
         <NavLink className="header__nav-item" to="">
-          Home
+          {HEADER_LINKS.home}
         </NavLink>
         <NavLink className="header__nav-item" to="/cart">
-          Cart
+          {HEADER_LINKS.cart}
         </NavLink>
         <NavLink className="header__nav-item" to="/orders">
-          Orders
+          {HEADER_LINKS.orders}
         </NavLink>
       </nav>
       <div className="header__cart">
-        <CartIcon /> Cart({<span>{cartLength}</span>})
+        <CartIcon /> {HEADER_LINKS.cart}({<span>{cartLength}</span>})
       </div>
     </header>
   );

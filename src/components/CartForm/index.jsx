@@ -1,6 +1,12 @@
 import propTypes from "prop-types";
 
 import Button from "../Button";
+import {
+  API_LINK,
+  CART_FORM_FIELDS,
+  CART_FORM_TEXTAREA,
+  CART_FORM_BUTTON,
+} from "../../helpers/constants";
 
 const CartForm = ({ cart, setCart, totalPrice, totalDiscount, setIsForm }) => {
   const confirmOrder = async (e) => {
@@ -38,16 +44,13 @@ const CartForm = ({ cart, setCart, totalPrice, totalDiscount, setIsForm }) => {
 
   async function handleAddToOrder(order) {
     try {
-      const response = await fetch(
-        "https://sigma-online-store.onrender.com/api/orders",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ order }),
+      const response = await fetch(`${API_LINK}/api/orders`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify({ order }),
+      });
       const data = await response.json();
       return data;
     } catch (error) {
@@ -56,46 +59,32 @@ const CartForm = ({ cart, setCart, totalPrice, totalDiscount, setIsForm }) => {
   }
   return (
     <form onSubmit={confirmOrder} className="cart__form">
-      <label htmlFor="name">Full name*</label>
-      <input
-        type="text"
-        name="name"
-        pattern="^[A-Z][a-z]+ [A-Z][a-z]+$"
-        title="Please enter your full name with both words starting with capital letters."
-        placeholder="Enter your full name....."
-        required
-      />
-      <label htmlFor="email">Your Email*</label>
-      <input
-        type="email"
-        name="email"
-        pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$"
-        title="Please enter a valid email address in the format user@example.com."
-        placeholder="Enter your e-mail....."
-        required
-      />
-      <label htmlFor="address">Address*</label>
-      <input
-        type="text"
-        name="address"
-        placeholder="Enter your address....."
-        required
-      />
-      <label htmlFor="phone">Phone Number*</label>
-      <input
-        type="tel"
-        name="phone"
-        placeholder="Enter your phone number....."
-        pattern="^(\+380\d{9})$"
-        title="Please enter a valid phone number starting with +380 followed by 9 digits."
-        required
-      />
-      <label htmlFor="additionalNotes">Message</label>
-      <textarea
-        name="additionalNotes"
-        placeholder="Additional Notes"
-      ></textarea>
-      <Button type="submit" text={"Confirm"} />
+      {CART_FORM_FIELDS.map(
+        ({ label, name, type, placeholder, pattern, title, required }) => (
+          <div key={name}>
+            <label htmlFor={name}>{label}</label>
+            <input
+              type={type}
+              name={name}
+              placeholder={placeholder}
+              pattern={pattern}
+              title={title}
+              required={required}
+            />
+          </div>
+        ),
+      )}
+      <div>
+        <label htmlFor={CART_FORM_TEXTAREA.name}>
+          {CART_FORM_TEXTAREA.label}
+        </label>
+        <textarea
+          name={CART_FORM_TEXTAREA.name}
+          placeholder={CART_FORM_TEXTAREA.placeholder}
+        />
+      </div>
+
+      <Button {...CART_FORM_BUTTON} />
     </form>
   );
 };

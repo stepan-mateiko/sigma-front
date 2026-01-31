@@ -1,4 +1,5 @@
 import propTypes from "prop-types";
+import { API_LINK } from "../../helpers/constants";
 
 const ProductCard = (props) => {
   const {
@@ -17,11 +18,7 @@ const ProductCard = (props) => {
     <div className={`${className}__card`} onClick={handler}>
       <p className={`${className}__category`}>{category}</p>
       <img
-        src={
-          className === "products"
-            ? `https://sigma-online-store.onrender.com${image}`
-            : image
-        }
+        src={className === "products" ? `${API_LINK}${image}` : image}
         alt={`${name} image`}
         className={`${className}__image`}
       />

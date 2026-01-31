@@ -1,6 +1,7 @@
 import propTypes from "prop-types";
 
 import Button from "../Button";
+import { API_LINK, CART_LIST_TEXT } from "../../helpers/constants";
 
 const CartList = ({ cart, setCart, totalPrice, totalDiscount }) => {
   const changeAmount = (productId, newQuantity) => {
@@ -8,8 +9,8 @@ const CartList = ({ cart, setCart, totalPrice, totalDiscount }) => {
       prevCart.map((product) =>
         product._id === productId
           ? { ...product, quantity: newQuantity }
-          : product
-      )
+          : product,
+      ),
     );
   };
 
@@ -22,14 +23,14 @@ const CartList = ({ cart, setCart, totalPrice, totalDiscount }) => {
   return (
     <>
       {cart.length === 0 ? (
-        <p className="cart__empty">Your cart is empty.</p>
+        <p className="cart__empty">{CART_LIST_TEXT.empty}</p>
       ) : (
         <div className="cart__container">
           <ul className="cart__wrapper">
             {cart.map((product, index) => (
               <li className="cart__card" key={index}>
                 <img
-                  src={`https://sigma-online-store.onrender.com${product.image}`}
+                  src={`${API_LINK}${product.image}`}
                   alt={`${product.name} image`}
                 />
                 <p>{product.name}</p>
@@ -38,7 +39,7 @@ const CartList = ({ cart, setCart, totalPrice, totalDiscount }) => {
                 </p>
                 <p>${product.price}.00</p>
                 <form>
-                  Quantity
+                  {CART_LIST_TEXT.quantity}
                   <input
                     type="number"
                     min="1"
@@ -54,8 +55,12 @@ const CartList = ({ cart, setCart, totalPrice, totalDiscount }) => {
             ))}
           </ul>
           <div className="cart__total">
-            <p>Total Price: ${totalPrice}.00</p>
-            <p>Total Discount: ${totalDiscount}.00</p>
+            <p>
+              {CART_LIST_TEXT.totalPrice} ${totalPrice}.00
+            </p>
+            <p>
+              {CART_LIST_TEXT.totalDiscount} ${totalDiscount}.00
+            </p>
           </div>
         </div>
       )}

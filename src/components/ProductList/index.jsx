@@ -5,6 +5,7 @@ import Modal from "../Modal";
 import Button from "../Button";
 import ProductCard from "../ProductCard";
 import ElementHeader from "../ElementHeader";
+import { API_LINK } from "../../helpers/constants";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -31,9 +32,7 @@ const ProductList = () => {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const response = await axios.get(
-          "https://sigma-online-store.onrender.com/api/products"
-        );
+        const response = await axios.get(`${API_LINK}/api/products`);
         let list = response.data.sort((a, b) => {
           if (a.discount === b.discount) {
             return 0;

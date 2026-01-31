@@ -1,23 +1,22 @@
-import Button from "../Button";
 import ElementHeader from "../ElementHeader";
+import { START_HEADER, START_CARDS } from "../../helpers/constants";
 
 const StartScreen = () => {
   return (
     <div className="start">
       <ElementHeader
-        className={"start"}
-        title={"100% Natural Food"}
-        heading={" Choose the best healthier way of life"}
+        className={START_HEADER.className}
+        title={START_HEADER.title}
+        heading={START_HEADER.heading}
       />
+
       <div className="start__wrapper">
-        <div className="start__card start__card-1">
-          <p className="start__card-title">Natural!!</p>
-          <h3 className="start__card-heading">Get Garden Fresh Fruits</h3>
-        </div>
-        <div className="start__card start__card-2">
-          <p className="start__card-title">Offer!!</p>
-          <h3 className="start__card-heading">Get 10% off on Vegetables</h3>
-        </div>
+        {START_CARDS.map(({ id, className, title, heading }) => (
+          <div className={className} key={id}>
+            <p className="start__card-title">{title}</p>
+            <h3 className="start__card-heading">{heading}</h3>
+          </div>
+        ))}
       </div>
     </div>
   );

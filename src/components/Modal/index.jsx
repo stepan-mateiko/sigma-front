@@ -3,15 +3,16 @@ import { useState } from "react";
 import propTypes from "prop-types";
 
 import Button from "../Button";
+import { API_LINK, MODAL } from "../../helpers/constants";
 
 const Modal = ({ isModalOpen, handleModalClose, product }) => {
   const [quantity, setQuantity] = useState(1);
   const [isAdditionalText, setAdditionalText] = useState(false);
   const [descriptionClass, setDescriptionClass] = useState(
-    "modal__btn active-btn "
+    "modal__btn active-btn ",
   );
   const [additionalClass, setAdditionalClass] = useState(
-    "modal__btn not-active-btn"
+    "modal__btn not-active-btn",
   );
 
   const showAdditionalText = () => {
@@ -47,7 +48,7 @@ const Modal = ({ isModalOpen, handleModalClose, product }) => {
         <div className="modal__image">
           <p className="modal__category">{product.category}</p>
           <img
-            src={`https://sigma-online-store.onrender.com${product.image}`}
+            src={`${API_LINK}${product.image}`}
             alt={`${product.name} image`}
           />
         </div>
@@ -66,14 +67,10 @@ const Modal = ({ isModalOpen, handleModalClose, product }) => {
             )}
             <p className="modal__price">{`$${product.price}.00`}</p>
           </div>
-          <p className="modal__text">
-            Simply dummy text of the printing and typesetting industry. Lorem
-            had ceased to been the industry's standard dummy text ever since the
-            1500s, when an unknown printer took a galley.
-          </p>
+          <p className="modal__text">{MODAL.text}</p>
 
           <form className="modal__form">
-            <label>Quantity:</label>
+            <label>{MODAL.quantity}</label>
             <input
               type="number"
               value={quantity}
@@ -96,22 +93,10 @@ const Modal = ({ isModalOpen, handleModalClose, product }) => {
         />
 
         {!isAdditionalText && (
-          <p className="modal__description">
-            This is Main Description - Welcome to the world of natural and
-            organic. Here you can discover the bounty of nature. We have grown
-            on the principles of health, ecology, and care. We aim to give our
-            customers a healthy chemical-free meal for perfect nutrition. It
-            offers about 8–10% carbs. Simple sugars — such as glucose and
-            fructose — make up 70% and 80% of the carbs in raw.
-          </p>
+          <p className="modal__description">{MODAL.description}</p>
         )}
         {isAdditionalText && (
-          <p className="modal__additional">
-            This is Additional Text - Lorem ipsum dolor, sit amet consectetur
-            adipisicing elit. Libero officia ipsa expedita repellat, voluptatum
-            quo modi quia optio quae aliquid debitis alias est aliquam aut ut
-            saepe. Sed, deserunt eius.
-          </p>
+          <p className="modal__additional">{MODAL.additionalText}</p>
         )}
       </div>
       <Button
