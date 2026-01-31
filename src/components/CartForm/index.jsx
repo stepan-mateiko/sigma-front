@@ -7,8 +7,10 @@ import {
   CART_FORM_BUTTON,
 } from "../../helpers/constants";
 import { addOrder } from "../../helpers/api";
+import { useCart } from "../../context/CartContext";
 
-const CartForm = ({ cart, setCart, totalPrice, totalDiscount, setIsForm }) => {
+const CartForm = ({ totalPrice, totalDiscount, setIsForm }) => {
+  const { cart, clearCart } = useCart();
   const confirmOrder = async (e) => {
     e.preventDefault();
     const name = e.target.elements.name.value;
@@ -32,8 +34,7 @@ const CartForm = ({ cart, setCart, totalPrice, totalDiscount, setIsForm }) => {
       price: totalPrice,
       discount: totalDiscount,
     };
-    localStorage.clear();
-    setCart([]);
+    clearCart();
     await addOrder(order);
     setIsForm(false);
   };

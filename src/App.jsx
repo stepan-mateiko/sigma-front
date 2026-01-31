@@ -6,20 +6,21 @@ import CartPage from "./components/Pages/CartPage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import OrdersPage from "./components/Pages/OrdersPage";
+import { CartProvider } from "./context/CartContext";
 
 const App = () => {
   return (
-    <>
-      <BrowserRouter>
+    <BrowserRouter>
+      <CartProvider>
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/orders" element={<OrdersPage />} />
         </Routes>
-      </BrowserRouter>
-      <Footer />
-    </>
+        <Footer />
+      </CartProvider>
+    </BrowserRouter>
   );
 };
 

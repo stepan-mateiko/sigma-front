@@ -1,28 +1,10 @@
 import { NavLink } from "react-router-dom";
-
 import { Logo, CartIcon } from "../Icon";
-import { useEffect, useState } from "react";
 import { HEADER_LINKS } from "../../helpers/constants";
+import { useCart } from "../../context/CartContext";
 
 const Header = () => {
-  const [cartLength, setCartLength] = useState(0);
-
-  useEffect(() => {
-    const originalCart = JSON.parse(localStorage.getItem("cart")) || [];
-    const uniqueProductsMap = originalCart.reduce((map, product) => {
-      const existingProduct = map.get(product._id);
-      if (existingProduct) {
-        existingProduct.quantity =
-          parseInt(existingProduct.quantity) + parseInt(product.quantity);
-      } else {
-        map.set(product._id, { ...product });
-      }
-      return map;
-    }, new Map());
-
-    const cart = Array.from(uniqueProductsMap.values());
-    setCartLength(cart.length);
-  }, [localStorage.getItem("cart")]);
+  const { cartCount } = useCart();
 
   return (
     <header className="header">
@@ -39,7 +21,10 @@ const Header = () => {
         </NavLink>
       </nav>
       <div className="header__cart">
-        <CartIcon /> {HEADER_LINKS.cart}({<span>{cartLength}</span>})
+        <NavLink className="header__nav-item" to="/cart">
+          <CartIcon />
+        </NavLink>
+        {HEADER_LINKS.cart}({<span>{cartCount}</span>})
       </div>
     </header>
   );

@@ -3,22 +3,10 @@ import CartImage from "../../../assets/images/cart-header-img.png";
 import CartList from "../../CartList";
 import CartForm from "../../CartForm";
 import Button from "../../Button";
+import { useCart } from "../../../context/CartContext";
 
 const CartPage = () => {
-  const originalCart = JSON.parse(localStorage.getItem("cart")) || [];
-
-  const uniqueProductsMap = originalCart.reduce((map, product) => {
-    const existingProduct = map.get(product._id);
-    if (existingProduct) {
-      existingProduct.quantity =
-        parseInt(existingProduct.quantity) + parseInt(product.quantity);
-    } else {
-      map.set(product._id, { ...product });
-    }
-    return map;
-  }, new Map());
-
-  const [cart, setCart] = useState(Array.from(uniqueProductsMap.values()));
+  const { cart } = useCart();
   const [isForm, setIsForm] = useState(false);
 
   let totalPrice = 0;
@@ -39,20 +27,13 @@ const CartPage = () => {
         <h2 className="cart__heading">Cart</h2>
         <img src={CartImage} alt="cart image" className="cart__image" />
       </div>
-      <CartList
-        cart={cart}
-        setCart={setCart}
-        totalPrice={totalPrice}
-        totalDiscount={totalDiscount}
-      />
+      <CartList totalPrice={totalPrice} totalDiscount={totalDiscount} />
       {!isForm && (
         <Button className={"cart__btn"} handler={showForm} text={"To Order"} />
       )}
 
       {isForm && (
         <CartForm
-          cart={cart}
-          setCart={setCart}
           totalPrice={totalPrice}
           totalDiscount={totalDiscount}
           setIsForm={setIsForm}

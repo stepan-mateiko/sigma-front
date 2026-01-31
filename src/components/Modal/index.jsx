@@ -4,8 +4,10 @@ import propTypes from "prop-types";
 
 import Button from "../Button";
 import { API_LINK, MODAL } from "../../helpers/constants";
+import { useCart } from "../../context/CartContext";
 
 const Modal = ({ isModalOpen, handleModalClose, product }) => {
+  const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [isAdditionalText, setAdditionalText] = useState(false);
   const [descriptionClass, setDescriptionClass] = useState(
@@ -26,15 +28,12 @@ const Modal = ({ isModalOpen, handleModalClose, product }) => {
     setDescriptionClass("modal__btn active-btn");
   };
 
-  const addToCart = () => {
-    const productWithQuantity = {
+  const handleAddToCart = () => {
+    addToCart({
       ...product,
-      quantity: quantity,
-    };
-
-    const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
-    const updatedCart = [...existingCart, productWithQuantity];
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
+      quantity: Number(quantity),
+    });
+    handleModalClose();
   };
 
   return (
@@ -69,14 +68,14 @@ const Modal = ({ isModalOpen, handleModalClose, product }) => {
           </div>
           <p className="modal__text">{MODAL.text}</p>
 
-          <form className="modal__form">
+          <form className="modal__form" onSubmit={(e) => e.preventDefault()}>
             <label>{MODAL.quantity}</label>
             <input
               type="number"
               value={quantity}
               onChange={(e) => setQuantity(e.target.value)}
             />
-            <Button text={"Add"} handler={addToCart} />
+            <Button text={"Add"} handler={handleAddToCart} />
           </form>
         </div>
       </div>

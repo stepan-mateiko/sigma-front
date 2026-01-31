@@ -50,7 +50,7 @@ const News = () => {
 
         <h2 className="subscribe__heading">{SUBSCRIBE_SECTION.heading}</h2>
 
-        <form className="subscribe__form">
+        <form className="subscribe__form" onSubmit={(e) => e.preventDefault()}>
           <input
             type={SUBSCRIBE_SECTION.input.type}
             placeholder={SUBSCRIBE_SECTION.input.placeholder}

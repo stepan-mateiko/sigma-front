@@ -2,23 +2,10 @@ import propTypes from "prop-types";
 
 import Button from "../Button";
 import { API_LINK, CART_LIST_TEXT } from "../../helpers/constants";
+import { useCart } from "../../context/CartContext";
 
-const CartList = ({ cart, setCart, totalPrice, totalDiscount }) => {
-  const changeAmount = (productId, newQuantity) => {
-    setCart((prevCart) =>
-      prevCart.map((product) =>
-        product._id === productId
-          ? { ...product, quantity: newQuantity }
-          : product,
-      ),
-    );
-  };
-
-  const deleteProduct = (product) => {
-    const updatedCart = cart.filter((item) => item._id !== product._id);
-    setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-  };
+const CartList = ({ totalPrice, totalDiscount }) => {
+  const { updateQuantity, removeFromCart, cart } = useCart();
 
   return (
     <>
@@ -28,7 +15,7 @@ const CartList = ({ cart, setCart, totalPrice, totalDiscount }) => {
         <div className="cart__container">
           <ul className="cart__wrapper">
             {cart.map((product, index) => (
-              <li className="cart__card" key={index}>
+              <li className="cart__card" key={product._id}>
                 <img
                   src={`${API_LINK}${product.image}`}
                   alt={`${product.name} image`}
@@ -38,18 +25,20 @@ const CartList = ({ cart, setCart, totalPrice, totalDiscount }) => {
                   ${product.discount_price}.00
                 </p>
                 <p>${product.price}.00</p>
-                <form>
+                <form onSubmit={(e) => e.preventDefault()}>
                   {CART_LIST_TEXT.quantity}
                   <input
                     type="number"
                     min="1"
                     value={product.quantity}
-                    onChange={(e) => {
-                      const newQuantity = parseInt(e.target.value);
-                      changeAmount(product._id, newQuantity);
-                    }}
+                    onChange={(e) =>
+                      updateQuantity(product._id, Number(e.target.value))
+                    }
                   />
-                  <Button text={"X"} handler={() => deleteProduct(product)} />
+                  <Button
+                    text={"X"}
+                    handler={() => removeFromCart(product._id)}
+                  />
                 </form>
               </li>
             ))}
