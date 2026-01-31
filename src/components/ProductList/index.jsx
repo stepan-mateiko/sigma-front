@@ -13,6 +13,7 @@ const ProductList = () => {
   const [visibleProducts, setVisibleProducts] = useState([]);
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const handleModalOpen = (product) => {
     setSelectedProduct(product);
@@ -33,9 +34,16 @@ const ProductList = () => {
 
   useEffect(() => {
     const loadProducts = async () => {
-      const data = await fetchProducts();
-      setProducts(data);
-      setVisibleProducts(data.slice(0, INITIAL_VISIBLE_COUNT));
+      try {
+        setLoading(true);
+        const data = await fetchProducts();
+        setProducts(data);
+        setVisibleProducts(data.slice(0, INITIAL_VISIBLE_COUNT));
+      } catch (error) {
+        console.error("Failed to load products", error);
+      } finally {
+        setLoading(false);
+      }
     };
 
     loadProducts();
@@ -48,22 +56,29 @@ const ProductList = () => {
         title={"Categories"}
         heading={"Our Products"}
       />
-      <div className="products__wrapper">
-        {visibleProducts.map((product) => (
-          <ProductCard
-            key={product._id}
-            className={"products"}
-            category={product.category}
-            handler={() => handleModalOpen(product)}
-            image={product.image}
-            name={product.name}
-            discount={product.discount}
-            discountPrice={product.discount_price}
-            price={product.price}
-            rate={product.rate}
-          />
-        ))}
-      </div>
+      {loading ? (
+        <div className="products__loader">
+          <div className="spinner"></div>
+        </div>
+      ) : (
+        <div className="products__wrapper">
+          {visibleProducts.map((product) => (
+            <ProductCard
+              key={product._id}
+              className={"products"}
+              category={product.category}
+              handler={() => handleModalOpen(product)}
+              image={product.image}
+              name={product.name}
+              discount={product.discount}
+              discountPrice={product.discount_price}
+              price={product.price}
+              rate={product.rate}
+            />
+          ))}
+        </div>
+      )}
+
       <Button
         className={"products__btn"}
         handler={showProducts}

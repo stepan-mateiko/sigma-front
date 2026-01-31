@@ -4,15 +4,35 @@ import { ORDERS } from "../../helpers/constants";
 
 const OrdersList = () => {
   const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     loadOrders();
   }, []);
 
   const loadOrders = async () => {
-    const data = await fetchOrders();
-    setOrders(data);
+    try {
+      setLoading(true);
+      const data = await fetchOrders();
+      setOrders(data);
+    } catch (error) {
+      console.error("Failed to load orders", error);
+    } finally {
+      setLoading(false);
+    }
   };
+
+  if (loading) {
+    return (
+      <div className="orders">
+        <h2 className="orders__heading">{ORDERS.heading}</h2>
+        <p className="orders__loading">Loading orders...</p>
+        <div className="orders__loader">
+          <div className="spinner"></div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="orders">
@@ -21,22 +41,24 @@ const OrdersList = () => {
         <p className="orders__empty">{ORDERS.empty}</p>
       ) : (
         <ul className="orders__wrapper">
-          {orders.map((order, index) => (
-            <li key={index} className="orders__card">
+          {orders.map((order) => (
+            <li key={order._id} className="orders__card">
               <div className="order__id">
                 <h3>{ORDERS.id}</h3>
                 <p>{order._id}</p>
               </div>
+
               <div className="order__products">
                 <h3>{ORDERS.products}</h3>
                 <ul className="order__products-list">
-                  {order.products.map((product, productIndex) => (
-                    <li key={productIndex}>
+                  {order.products.map((product) => (
+                    <li key={product._id}>
                       {product.name} (Quantity: {product.quantity})
                     </li>
                   ))}
                 </ul>
               </div>
+
               <div className="order__price">
                 <h3>{ORDERS.price.sum}</h3>
                 <p>
@@ -46,6 +68,7 @@ const OrdersList = () => {
                   {ORDERS.price.discount} ${order.discount}.00
                 </p>
               </div>
+
               <div className="order__customer">
                 <h3>Customer:</h3>
                 <p>
@@ -61,6 +84,7 @@ const OrdersList = () => {
                   {ORDERS.customer.telephone} {order.customer.phone}
                 </p>
               </div>
+
               <div className="order__message">
                 <h3>{ORDERS.message}</h3>
                 <p>{order.customer.additionalNotes}</p>
