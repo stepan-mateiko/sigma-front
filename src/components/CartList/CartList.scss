@@ -13,6 +13,9 @@
     padding: 5%;
   }
   &__card {
+    p {
+      width: 20%;
+    }
     @include flex-type();
     img {
       width: 20%;
@@ -20,7 +23,7 @@
         width: 80%;
       }
     }
-    @include text-type(40px, 600);
+    @include text-type(30px, 600);
     @media (max-width: 768px) {
       @include text-type(16px, 600);
     }
@@ -35,7 +38,7 @@
       @include flex-type(center);
     }
     input {
-      width: 15%;
+      width: 25%;
       margin: 0 5%;
       padding: 3%;
       border-radius: 15px;

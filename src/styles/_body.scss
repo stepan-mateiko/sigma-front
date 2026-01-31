@@ -10,7 +10,7 @@ body {
   @include text-type(16px, 800);
   color: $headings-color;
   @include centerize(100vw);
-  max-width: 1920px;
+  max-width: 1240px;
 }
 hr {
   color: $hr-line;

@@ -2,7 +2,7 @@
 @import "../../styles/mixins";
 
 .modal {
-  @include centerize(90%);
+  @include centerize(70%);
   padding: 5%;
   background-color: #fff;
 
