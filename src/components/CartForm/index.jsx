@@ -30,7 +30,6 @@ const CartForm = ({ cart, setCart, totalPrice, totalDiscount, setIsForm }) => {
     setCart([]);
     try {
       const response = await handleAddToOrder(order);
-      console.log("Order response:", response);
       setIsForm(false);
     } catch (error) {
       console.error("Error confirming order:", error);
@@ -47,10 +46,9 @@ const CartForm = ({ cart, setCart, totalPrice, totalDiscount, setIsForm }) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ order }),
-        }
+        },
       );
       const data = await response.json();
-      console.log("Added to order:", data);
       return data;
     } catch (error) {
       throw new Error("Error adding to order: " + error.message);
