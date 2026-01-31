@@ -28,7 +28,7 @@ const OrdersList = () => {
         <h2 className="orders__heading">{ORDERS.heading}</h2>
         <p className="orders__loading">Loading orders...</p>
         <div className="orders__loader">
-          <div className="spinner"></div>
+          <div className="spinner" />
         </div>
       </div>
     );
@@ -37,61 +37,70 @@ const OrdersList = () => {
   return (
     <div className="orders">
       <h2 className="orders__heading">{ORDERS.heading}</h2>
+
       {orders.length === 0 ? (
         <p className="orders__empty">{ORDERS.empty}</p>
       ) : (
-        <ul className="orders__wrapper">
-          {orders.map((order) => (
-            <li key={order._id} className="orders__card">
-              <div className="order__id">
-                <h3>{ORDERS.id}</h3>
-                <p>{order._id}</p>
-              </div>
+        <div className="orders__table-wrapper">
+          <table className="orders__table">
+            <thead>
+              <tr>
+                <th>{ORDERS.id}</th>
+                <th>{ORDERS.products}</th>
+                <th>{ORDERS.price.sum}</th>
+                <th>{ORDERS.customer.title ?? "Customer"}</th>
+                <th>{ORDERS.message}</th>
+              </tr>
+            </thead>
 
-              <div className="order__products">
-                <h3>{ORDERS.products}</h3>
-                <ul className="order__products-list">
-                  {order.products.map((product) => (
-                    <li key={product._id}>
-                      {product.name} (Quantity: {product.quantity})
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            <tbody>
+              {orders.map((order) => (
+                <tr key={order._id}>
+                  <td>{order._id}</td>
 
-              <div className="order__price">
-                <h3>{ORDERS.price.sum}</h3>
-                <p>
-                  {ORDERS.price.price} ${order.price}.00
-                </p>
-                <p>
-                  {ORDERS.price.discount} ${order.discount}.00
-                </p>
-              </div>
+                  <td>
+                    <ul className="orders__products-list">
+                      {order.products.map((product) => (
+                        <li key={product._id}>
+                          {product.name} × {product.quantity}
+                        </li>
+                      ))}
+                    </ul>
+                  </td>
 
-              <div className="order__customer">
-                <h3>Customer:</h3>
-                <p>
-                  {ORDERS.customer.name} {order.customer.name}
-                </p>
-                <p>
-                  {ORDERS.customer.email} {order.customer.email}
-                </p>
-                <p>
-                  {ORDERS.customer.address} {order.customer.address}
-                </p>
-                <p>
-                  {ORDERS.customer.telephone} {order.customer.phone}
-                </p>
-              </div>
+                  <td>
+                    <p>
+                      <b>{ORDERS.price.price}</b> ${order.price}.00
+                    </p>
+                    <p>
+                      <b> {ORDERS.price.discount}</b> ${order.discount}.00
+                    </p>
+                  </td>
 
-              <div className="order__message">
-                <h3>{ORDERS.message}</h3>
-                <p>{order.customer.additionalNotes}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
+                  <td>
+                    <p>
+                      <b> {ORDERS.customer.name}</b> {order.customer.name}
+                    </p>
+                    <p>
+                      <b>{ORDERS.customer.email}</b> {order.customer.email}
+                    </p>
+                    <p>
+                      <b>{ORDERS.customer.address}</b> {order.customer.address}
+                    </p>
+                    <p>
+                      <b>{ORDERS.customer.telephone} </b>
+                      {order.customer.phone}
+                    </p>
+                  </td>
+
+                  <td>
+                    <i>{order.customer.additionalNotes || "-"}</i>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );
