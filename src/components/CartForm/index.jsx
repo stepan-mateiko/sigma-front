@@ -2,11 +2,11 @@ import propTypes from "prop-types";
 
 import Button from "../Button";
 import {
-  API_LINK,
   CART_FORM_FIELDS,
   CART_FORM_TEXTAREA,
   CART_FORM_BUTTON,
 } from "../../helpers/constants";
+import { addOrder } from "../../helpers/api";
 
 const CartForm = ({ cart, setCart, totalPrice, totalDiscount, setIsForm }) => {
   const confirmOrder = async (e) => {
@@ -34,29 +34,10 @@ const CartForm = ({ cart, setCart, totalPrice, totalDiscount, setIsForm }) => {
     };
     localStorage.clear();
     setCart([]);
-    try {
-      const response = await handleAddToOrder(order);
-      setIsForm(false);
-    } catch (error) {
-      console.error("Error confirming order:", error);
-    }
+    await addOrder(order);
+    setIsForm(false);
   };
 
-  async function handleAddToOrder(order) {
-    try {
-      const response = await fetch(`${API_LINK}/api/orders`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ order }),
-      });
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      throw new Error("Error adding to order: " + error.message);
-    }
-  }
   return (
     <form onSubmit={confirmOrder} className="cart__form">
       {CART_FORM_FIELDS.map(

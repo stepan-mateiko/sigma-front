@@ -1,21 +1,17 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
-import { API_LINK, ORDERS } from "../../helpers/constants";
+import { fetchOrders } from "../../helpers/api";
+import { ORDERS } from "../../helpers/constants";
 
 const OrdersList = () => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    fetchOrders();
+    loadOrders();
   }, []);
 
-  const fetchOrders = async () => {
-    try {
-      const response = await axios.get(`${API_LINK}/api/orders`);
-      setOrders(response.data);
-    } catch (error) {
-      console.error("Error fetching orders:", error);
-    }
+  const loadOrders = async () => {
+    const data = await fetchOrders();
+    setOrders(data);
   };
 
   return (

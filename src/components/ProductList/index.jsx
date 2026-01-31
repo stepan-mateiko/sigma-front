@@ -1,56 +1,44 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-
 import Modal from "../Modal";
 import Button from "../Button";
 import ProductCard from "../ProductCard";
 import ElementHeader from "../ElementHeader";
-import { API_LINK } from "../../helpers/constants";
+import { useState, useEffect } from "react";
+
+import { fetchProducts } from "../../helpers/api";
+
+const INITIAL_VISIBLE_COUNT = 8;
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
+  const [visibleProducts, setVisibleProducts] = useState([]);
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState({});
-  const [visibleProducts, setVisibleProducts] = useState([]);
 
   const handleModalOpen = (product) => {
+    setSelectedProduct(product);
     setModalOpen(true);
-    setSelectedProduct({ ...product });
   };
 
   const handleModalClose = () => {
     setModalOpen(false);
   };
+
   const showProducts = () => {
-    if (visibleProducts.length === products.length) {
-      setVisibleProducts(products.slice(0, 8));
-    } else {
-      setVisibleProducts(products);
-    }
+    setVisibleProducts((prev) =>
+      prev.length === products.length
+        ? products.slice(0, INITIAL_VISIBLE_COUNT)
+        : products,
+    );
   };
 
   useEffect(() => {
-    async function fetchProducts() {
-      try {
-        const response = await axios.get(`${API_LINK}/api/products`);
-        let list = response.data.sort((a, b) => {
-          if (a.discount === b.discount) {
-            return 0;
-          }
-          if (a.discount) {
-            return -1;
-          } else {
-            return 1;
-          }
-        });
-        setProducts(list);
-        setVisibleProducts(list.slice(0, 8));
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    }
+    const loadProducts = async () => {
+      const data = await fetchProducts();
+      setProducts(data);
+      setVisibleProducts(data.slice(0, INITIAL_VISIBLE_COUNT));
+    };
 
-    fetchProducts();
+    loadProducts();
   }, []);
 
   return (
