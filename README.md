@@ -14,6 +14,7 @@ The project demonstrates modern React patterns, global state management with Con
 - Cart persistence via `localStorage`
 - Order creation and submission to backend
 - Orders history page
+- Orders deleting from database
 - Loading and empty states
 - Accessibility-friendly structure
 - Responsive layout
@@ -133,6 +134,7 @@ Cart state is restored on application load.
   - Total price and discount
   - Customer information
   - Additional notes
+- Orders can be deleted from database
 
 ---
 
@@ -167,6 +169,7 @@ Cart state is restored on application load.
 
 - Fetches and displays all orders
 - Shows loading spinner and empty state
+- Possibility to delete order
 
 ---
 
@@ -191,7 +194,7 @@ npm start
 
 ---
 
-## 🔧 Configuration
+## Configuration
 
 API endpoints are configured in:
 
@@ -208,7 +211,7 @@ helpers / constants.js;
 - Product filtering & sorting
 - Server-side cart persistence
 - Unit and integration tests
-- Dark mode 🌙
+- Dark mode
 
 ---
 
