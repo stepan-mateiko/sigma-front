@@ -36,6 +36,7 @@
     box-shadow: 24px 18px 50px -20px rgba(167, 167, 167, 0.78);
     background-color: #fff;
     position: relative;
+    @include flex-type($direction: column);
     @media (max-width: 760px) {
       width: 60%;
     }
