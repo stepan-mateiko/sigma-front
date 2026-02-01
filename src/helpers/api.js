@@ -32,3 +32,7 @@ export const fetchProducts = async () => {
     throw error;
   }
 };
+
+export const deleteOrder = async (orderId) => {
+  await axios.delete(`${API_LINK}/api/orders/${orderId}`);
+};

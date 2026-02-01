@@ -44,6 +44,12 @@
       background-color: #fafafa;
     }
   }
+  &__button {
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    color: $delete-color;
+  }
 
   &__products-list {
     padding-left: 1rem;

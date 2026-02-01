@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { fetchOrders } from "../../helpers/api";
+import { fetchOrders, deleteOrder } from "../../helpers/api";
 import { ORDERS } from "../../helpers/constants";
+import Button from "../Button";
 
 const OrdersList = () => {
   const [orders, setOrders] = useState([]);
@@ -20,6 +21,12 @@ const OrdersList = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleDeleteOrder = async (id) => {
+    await deleteOrder(id);
+    const data = await fetchOrders();
+    setOrders(data);
   };
 
   if (loading) {
@@ -56,7 +63,16 @@ const OrdersList = () => {
             <tbody>
               {orders.map((order) => (
                 <tr key={order._id}>
-                  <td>{order._id}</td>
+                  <td>
+                    {order._id}
+                    <Button
+                      className="orders__button"
+                      text="❌ Delete"
+                      handler={() => {
+                        handleDeleteOrder(order._id);
+                      }}
+                    />
+                  </td>
 
                   <td>
                     <ul className="orders__products-list">
