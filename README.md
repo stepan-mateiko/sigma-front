@@ -1,70 +1,227 @@
-# Getting Started with Create React App
+# 🛒 React E-Commerce Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack e-commerce web application built with **React** on the frontend and **Node.JS backend**, both developed by me.
 
-## Available Scripts
+The project demonstrates modern React patterns, global state management with Context, modal interactions, API communication, and cart persistence using `localStorage`.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Product catalog with API data fetching
+- Product preview modal with detailed info
+- Cart management (add / remove / update quantity)
+- Cart persistence via `localStorage`
+- Order creation and submission to backend
+- Orders history page
+- Loading and empty states
+- Accessibility-friendly structure
+- Responsive layout
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## 🖼 Screenshots
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+/screenshots
+├── home-page.png
+├── product-modal.png
+├── cart-page.png
+├── order-form.png
+└── orders-list.png
 
-### `npm run build`
+````
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Example:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```md
+![Home Page](screenshots/home-page.png)
+![Product Modal](screenshots/product-modal.png)
+![Cart Page](screenshots/cart-page.png)
+![Orders List](screenshots/orders-list.png)
+````
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## Tech Stack
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Frontend
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **React 18**
+- **React Router v6**
+- **React Context API**
+- **React Modal**
+- **Axios**
+- **SCSS (SASS)**
+- **PropTypes**
+- **React Swiper**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Backend
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- **Node.JS**
+- **Express.JS**
+- **MongoDB**
+- Handles:
+  - Products fetching
+  - Order creation
+  - Orders retrieval
 
-## Learn More
+> ✅ Backend was **fully implemented by me** and integrated with the frontend via API calls.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 📂 Project Structure
 
-### Code Splitting
+```
+src/
+├── components/
+│   ├── Button/
+│   ├── Header/
+│   ├── Footer/
+│   ├── Modal/
+│   ├── ProductCard/
+│   ├── ProductList/
+│   ├── CartList/
+│   ├── CartForm/
+│   ├── OrdersList/
+│   ├── News/
+│   └── Pages/
+│
+├── context/
+│   └── CartContext.jsx
+│
+├── helpers/
+│   ├── api.js
+│   └── constants.js
+│
+├── styles/
+│   ├── _variables.scss
+│   └── main.scss
+│
+└── App.jsx
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## 🛒 Cart Architecture
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Cart state is managed globally using **React Context**.
 
-### Making a Progressive Web App
+### Cart functionality:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Add products from modal
+- Merge quantities for the same product
+- Update quantity from cart page
+- Remove items
+- Clear cart after successful order
+- Sync cart state with `localStorage`
 
-### Advanced Configuration
+```js
+localStorage.setItem("cart", JSON.stringify(cart));
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Cart state is restored on application load.
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 🧾 Orders
 
-### `npm run build` fails to minify
+- Orders are fetched from the backend
+- Displayed in a structured, readable layout
+- Each order contains:
+  - Order ID
+  - Products with quantities
+  - Total price and discount
+  - Customer information
+  - Additional notes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+## Key Components
+
+### `ProductList`
+
+- Fetches products from API
+- Supports “Load More / Show Less”
+- Opens product modal
+
+### `Modal`
+
+- Displays product details
+- Quantity input
+- Adds product to cart
+- Accessible modal handling
+
+### `CartList`
+
+- Displays cart items
+- Allows quantity updates
+- Shows total price and discount
+
+### `CartForm`
+
+- Collects customer information
+- Sends order to backend
+- Clears cart after submission
+
+### `OrdersList`
+
+- Fetches and displays all orders
+- Shows loading spinner and empty state
+
+---
+
+## Accessibility
+
+- Semantic HTML structure
+- Proper `label` usage for inputs
+- Meaningful `alt` text for images
+- Keyboard-friendly modal behavior
+- Screen-reader–friendly patterns
+
+---
+
+## Installation & Run
+
+```bash
+git clone https://github.com/your-username/react-ecommerce-app.git
+cd frontend
+npm install
+npm start
+```
+
+---
+
+## 🔧 Configuration
+
+API endpoints are configured in:
+
+```js
+helpers / constants.js;
+```
+
+---
+
+## Possible Improvements
+
+- Authentication & user accounts
+- Pagination for orders
+- Product filtering & sorting
+- Server-side cart persistence
+- Unit and integration tests
+- Dark mode 🌙
+
+---
+
+## Author
+
+**Stepan Mateiko**
+Junior Frontend Developer (React)
+
+- Frontend: ✅ Developed by me
+- Backend: ✅ Developed by me
+
+---
+
+## 📄 License
+
+This project was created for educational and portfolio purposes.
