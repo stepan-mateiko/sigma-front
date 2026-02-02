@@ -22,6 +22,7 @@
       border-radius: 15px;
       @media (max-width: 768px) {
         width: 80%;
+        border-radius: 10px;
       }
     }
     textarea {
@@ -30,10 +31,15 @@
       border-radius: 15px;
       @media (max-width: 768px) {
         width: 80%;
+        border-radius: 10px;
       }
     }
     button {
       @include blue-button();
+      @media (max-width: 768px) {
+        width: 57%;
+        border-radius: 10px;
+      }
     }
   }
 }

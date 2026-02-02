@@ -1,6 +1,9 @@
 .orders {
   background-color: $grey-background;
   margin-top: 10%;
+  @media (max-width: 760px) {
+    margin-top: 50%;
+  }
 
   &__heading {
     padding: 2%;
@@ -20,6 +23,24 @@
     overflow: hidden;
     font-weight: 400;
     color: $text-color;
+    @media (max-width: 760px) {
+      thead {
+        display: none;
+      }
+      tbody {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      }
+      tr.orders__data {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        border-bottom: 1px black solid;
+      }
+    }
 
     th,
     b {

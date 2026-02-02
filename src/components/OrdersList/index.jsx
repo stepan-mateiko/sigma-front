@@ -62,7 +62,7 @@ const OrdersList = () => {
 
             <tbody>
               {orders.map((order) => (
-                <tr key={order._id}>
+                <tr key={order._id} className="orders__data">
                   <td>
                     {order._id}
                     <Button

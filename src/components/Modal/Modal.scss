@@ -2,6 +2,9 @@
 @import "../../styles/mixins";
 
 .modal {
+  @media (max-width: 760px) {
+    display: inline;
+  }
   @include centerize(70%);
   padding: 5%;
   background-color: #fff;

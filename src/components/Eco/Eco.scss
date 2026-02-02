@@ -2,6 +2,9 @@
 @import "../../styles/mixins";
 
 .eco {
+  @media (max-width: 760px) {
+    width: 80%;
+  }
   @include centerize();
   &__header {
     @include flex-type();

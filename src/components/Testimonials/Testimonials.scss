@@ -20,6 +20,9 @@
     .swiper-pagination {
       margin-top: 10px;
     }
+    @media (max-width: 768px) {
+      width: auto;
+    }
   }
   &__card {
     text-align: center;
@@ -50,7 +53,7 @@
       flex-direction: column;
       -webkit-box-align: end;
       -ms-flex-align: end;
-      align-items: flex-end;
+      align-items: center;
     }
     &-card {
       width: 158px;
