@@ -27,7 +27,6 @@ The project demonstrates modern React patterns, global state management with Con
 ├── home-page.png
 ├── product-modal.png
 ├── cart-page.png
-├── order-form.png
 └── orders-list.png
 
 ````
@@ -35,10 +34,14 @@ The project demonstrates modern React patterns, global state management with Con
 Example:
 
 ```md
-![Home Page](screenshots/home-page.png)
-![Product Modal](screenshots/product-modal.png)
-![Cart Page](screenshots/cart-page.png)
-![Orders List](screenshots/orders-list.png)
+<img width="1242" height="791" alt="image" src="https://github.com/user-attachments/assets/2e366c77-eca3-4ebf-9a4b-3f2de8ad130a" />
+
+<img width="1399" height="760" alt="image" src="https://github.com/user-attachments/assets/ebc6c4f9-960c-4cff-b226-bbc6d760d0ef" />
+
+<img width="779" height="644" alt="image" src="https://github.com/user-attachments/assets/45a5eddc-e7ad-49c9-81f2-432e9acc6044" />
+
+<img width="1204" height="583" alt="image" src="https://github.com/user-attachments/assets/5e83000f-29e9-4edc-9559-fb9d71e30a00" />
+
 ````
 
 ---
