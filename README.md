@@ -29,20 +29,15 @@ The project demonstrates modern React patterns, global state management with Con
 ├── cart-page.png
 └── orders-list.png
 
-````
-
 Example:
 
-```md
-<img width="1242" height="791" alt="image" src="https://github.com/user-attachments/assets/2e366c77-eca3-4ebf-9a4b-3f2de8ad130a" />
+<img width="903" height="486" alt="image" src="https://github.com/user-attachments/assets/55cf1371-9876-49a4-ab2b-8d4fe94a18ab" />
 
-<img width="1399" height="760" alt="image" src="https://github.com/user-attachments/assets/ebc6c4f9-960c-4cff-b226-bbc6d760d0ef" />
+<img width="1253" height="749" alt="image" src="https://github.com/user-attachments/assets/8f81d338-3ad6-4bbb-aade-10fd2ed9f729" />
 
-<img width="779" height="644" alt="image" src="https://github.com/user-attachments/assets/45a5eddc-e7ad-49c9-81f2-432e9acc6044" />
+<img width="526" height="613" alt="image" src="https://github.com/user-attachments/assets/c42abdc9-18bc-40e6-842a-85f8769ea7fe" />
 
-<img width="1204" height="583" alt="image" src="https://github.com/user-attachments/assets/5e83000f-29e9-4edc-9559-fb9d71e30a00" />
-
-````
+<img width="1662" height="681" alt="image" src="https://github.com/user-attachments/assets/2db89833-24a9-4dd8-8346-04dfe7e6d441" />
 
 ---
 
